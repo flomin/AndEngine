@@ -149,7 +149,7 @@ public class Sprite extends RectangularShape {
 	}
 
 	public void setFlipped(final boolean pFlippedHorizontal, final boolean pFlippedVertical) {
-		if((this.mFlippedHorizontal != pFlippedHorizontal) || (this.mFlippedVertical != pFlippedVertical)) {
+		if(this.mFlippedHorizontal != pFlippedHorizontal || this.mFlippedVertical != pFlippedVertical) {
 			this.mFlippedHorizontal = pFlippedHorizontal;
 			this.mFlippedVertical = pFlippedVertical;
 
@@ -204,13 +204,17 @@ public class Sprite extends RectangularShape {
 		this.mSpriteVertexBufferObject.onUpdateColor(this);
 	}
 
-	protected void onUpdateTextureCoordinates() {
-		this.mSpriteVertexBufferObject.onUpdateTextureCoordinates(this);
-	}
-
 	// ===========================================================
 	// Methods
 	// ===========================================================
+
+	protected void onUpdateTextureCoordinates() {
+		this.mSpriteVertexBufferObject.onUpdateTextureCoordinates(this);
+	}
+	
+	public void markTextureRegionChanged() {
+		onUpdateTextureCoordinates();
+	}
 
 	// ===========================================================
 	// Inner and Anonymous Classes
